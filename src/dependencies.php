@@ -26,4 +26,4 @@ $container['db'] = function($container) {
   $capsule->bootEloquent();
 
   return $capsule;
-}
+};
