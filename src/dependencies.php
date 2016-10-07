@@ -27,3 +27,14 @@ $container['db'] = function($container) {
 
   return $capsule;
 };
+
+$container['view'] = function ($container) {
+    $settings = $container->get('settings')['renderer'];
+    $view = new \Slim\Views\Twig($settings['template_path']);
+    $view->addExtension(new \Slim\Views\TwigExtension(
+        $container['router'],
+        $container['request']->getUri()
+    ));
+
+    return $view;
+};
