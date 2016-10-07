@@ -16,7 +16,7 @@
         "slim/php-view": "^2.0",
         "monolog/monolog": "^1.17",
         "illuminate/database": "*",
-        "twig/twig": "~1.0"
+        "slim/twig-view": "^2.1"
     },
     "require-dev": {
         "phpunit/phpunit": ">=4.8 < 6.0"
@@ -24,8 +24,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Controllers\\": "controllers/",
-            "Models\\": "models/"
+            "Templates\\": "templates/"
         }
     },
 	"scripts": {
