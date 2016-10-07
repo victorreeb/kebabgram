@@ -1,0 +1,12 @@
+{
+    "name": "root/projet_web",
+    "authors": [
+        {
+            "name": "reeb5u",
+            "email": "reeb.vi@gmail.com"
+        }
+    ],
+    "require": {
+      "illuminate/database": "*"
+    }
+}
