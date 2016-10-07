@@ -23,8 +23,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/",
-            "Templates\\": "templates/"
+            "Tests\\": "tests/"
         }
     },
 	"scripts": {
