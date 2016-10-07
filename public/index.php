@@ -29,5 +29,6 @@ require __DIR__ . '/../src/routes.php';
 $app->get('/hello/{:name}', function ($name) {
     echo "Hello, $name";
 });
+
 // Run app
 $app->run();
