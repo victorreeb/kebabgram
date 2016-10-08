@@ -43,6 +43,7 @@ $container['AuthController'] = function($c) {
 
 //middleware
 $app->add(new Middleware\ValidationErrorsMiddleware($container));
+$app->add(new Middleware\OldInputsMiddleware($container));
 
 //view
 $container['view'] = function ($c) {

@@ -6,7 +6,7 @@
         <div class="form-group{{ errors.name ? ' has-error' : '' }}">
           <label for="inputName" class="col-lg-2 control-label">Nom d'utilisateur</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" name="name" id="inputName" placeholder="Nom d'utilisateur">
+            <input type="text" class="form-control" name="name" id="inputName" placeholder="Nom d'utilisateur" value="{{ old_inputs.name }}">
             {% if errors.name %}
               <span class="help-block"> {{ errors.name | first }}</span>
             {% endif %}
@@ -15,7 +15,7 @@
         <div class="form-group{{ errors.email ? ' has-error' : ''}}">
           <label for="inputEmail" class="col-lg-2 control-label">Email</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" name="email" id="inputEmail" placeholder="you@domain.com">
+            <input type="text" class="form-control" name="email" id="inputEmail" placeholder="you@domain.com" value="{{ old_inputs.email }}">
             {% if errors.email %}
               <span class="help-block"> {{ errors.email | first }}</span>
             {% endif %}
@@ -24,7 +24,7 @@
         <div class="form-group{{ errors.password ? ' has-error' : ''}}">
           <label for="inputPassword" class="col-lg-2 control-label">Mot de passe</label>
           <div class="col-lg-10">
-            <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Mot de passe">
+            <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Mot de passe" value="{{ old_inputs.password }}">
             {% if errors.password %}
               <span class="help-block"> {{ errors.password | first }}</span>
             {% endif %}
