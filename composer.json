@@ -32,17 +32,8 @@
         "Controllers\\": "src/controllers",
         "Models\\": "src/models",
         "Validation\\": "src/validation",
-<<<<<<< HEAD
-<<<<<<< HEAD
         "Middleware\\": "src/middleware",
         "Auth\\": "src/auth"
-=======
-        "Middleware\\": "src/middleware"
->>>>>>> master
-=======
-        "Middleware\\": "src/middleware",
-        "Auth\\": "src/auth"
->>>>>>> 81623193d11953159b6919c3f460737bfbe0a2b7
       }
     },
 	"scripts": {
