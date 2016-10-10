@@ -1,26 +1,44 @@
-# Slim Framework 3 Skeleton Application
+# Projet
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+Programmation Web orienté objet
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
 
-## Install the Application
+# Contexte
+Une jeune startup nancéienne souhaite monter un nouveau projet d’envergure.
+Inspirés par leur quotidien, ils ont pour idée de mettre au point un projet réunissant leur deux plus
+grandes passions, les kebabs et la photographie.
+Ils font appellent à une équipe de développeur agiles (vous !) afin de construire un projet qui sera
+au plus proche de leurs attentes.
+Le site “kebabstagram” doit donc à minima permettre de :
+  • S’enregistrer et s’authentifier
+  • Déposer des photos de kebab en y ajoutant un message, des tags (ou hashtags), l’endroit où il a été acheté *
+  • Rechercher parmi toutes les photos de kebab, par tag, utilisateur, mot dans le message
+  • Noter les photos de kebab *
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+* Authentification requise
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+#Livrables attendus
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
+  • User stories & contenu des sprints sur Trello
+  • Sources du projet sur Github
+  • Manuel d’installation / d’utilisation (README.md)
+  • Résumé de la contribution personnelle de chacun des membres du groupe au projet (CONTRIBUTORS.md) Notation
 
-To run the application in development, you can also run this command. 
+Le projet se fera par groupe de 2 à 4 personnes et les principaux critères d’évaluation seront :
+  • la conceptualisation objet
+  • la qualité de code
+  • le travail d’équipe
+  • le bon fonctionnement
 
-	php composer.phar start
+Le projet doit mettre en oeuvre les solutions vues en cours :
+  • Composer
+  • Slim Framework
+  • Twig
+  • Eloquent ORM
 
-Run this command to run the test suite
+# Installer
 
-	php composer.phar test
-
-That's it! Now go build something cool.
+Fork le projet dans votre /www
+lancer un terminal, tapez :
+  composer install
