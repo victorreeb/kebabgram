@@ -1,13 +1,11 @@
 <?php
-// Routes
 
-// $app->get('/', function ($request, $response, $args) {
-//     // Sample log message
-//     $this->logger->info("Homepage route");
-//     // Render views
-//     return $this->renderer->render($response, 'homepage.phtml', $args);
-// });
+// Homepage
+$app->get('/', 'HomepageController:index')->setname('home');
 
-$app->get('/', function ($request, $response, $args) {
-    return $this->view->render($response, 'homepage.html');
-});
+//Auth
+$app->get('/auth/signup', 'AuthController:getSignUp')->setname('auth.signup');
+$app->post('/auth/signup', 'AuthController:postSignUp');
+
+$app->get('/auth/signin', 'AuthController:getSignIn')->setname('auth.signin');
+$app->post('/auth/signin', 'AuthController:postSignIn');

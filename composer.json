@@ -16,7 +16,8 @@
         "slim/php-view": "^2.0",
         "monolog/monolog": "^1.17",
         "illuminate/database": "*",
-        "slim/twig-view": "^2.1"
+        "slim/twig-view": "^2.1",
+        "respect/validation": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": ">=4.8 < 6.0"
@@ -25,6 +26,15 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
+    },
+    "autoload": {
+      "psr-4": {
+        "Controllers\\": "src/controllers",
+        "Models\\": "src/models",
+        "Validation\\": "src/validation",
+        "Middleware\\": "src/middleware",
+        "Auth\\": "src/auth"
+      }
     },
 	"scripts": {
         "start": "php -S 0.0.0.0:8080 -t public public/index.php",

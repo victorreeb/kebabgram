@@ -1,4 +1,7 @@
 <?php
+
+use Respect\Validation\Validator as v;
+
 // DIC configuration
 
 $container = $app->getContainer();
@@ -18,23 +21,54 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
-$container['db'] = function($container) {
-  $capsule = new \Illuminate\Database\Capsule\Manager;
-  $capsule->addConnection($container['settings']['db']);
 
-  $capsule->setAsGlobal();
-  $capsule->bootEloquent();
-
+// db bootEloquent
+$capsule = new \Illuminate\Database\Capsule\Manager;
+$capsule->addConnection($container['settings']['db']);
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
+$container['db'] = function($c) {
   return $capsule;
 };
 
-$container['view'] = function ($container) {
-    $settings = $container->get('settings')['renderer'];
+//validator
+$container['validator'] = function($c){
+  return new Validation\Validator;
+};
+
+//controllers
+$container['HomepageController'] = function($c) {
+  return new \Controllers\HomepageController($c);
+};
+$container['AuthController'] = function($c) {
+  return new \Controllers\Auth\AuthController($c);
+};
+
+//middleware
+$app->add(new Middleware\ValidationErrorsMiddleware($container));
+$app->add(new Middleware\OldInputsMiddleware($container));
+
+//custom rules validation
+v::with('Validation\\Rules');
+
+//authentification
+$container['auth'] = function($c){
+  return new Auth\Auth;
+};
+
+//view
+$container['view'] = function ($c) {
+    $settings = $c->get('settings')['renderer'];
     $view = new \Slim\Views\Twig($settings['template_path']);
     $view->addExtension(new \Slim\Views\TwigExtension(
-        $container['router'],
-        $container['request']->getUri()
+        $c->router,
+        $c->request->getUri()
     ));
+
+    $view->getEnvironment()->addGlobal('auth', [
+      'check' => $c->auth->check(),
+      'user' => $c->auth->user(),
+    ]);
 
     return $view;
 };
