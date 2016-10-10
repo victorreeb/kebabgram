@@ -1,4 +1,7 @@
 <?php
+
+use Respect\Validation\Validator as v;
+
 // DIC configuration
 
 $container = $app->getContainer();
@@ -45,6 +48,14 @@ $container['AuthController'] = function($c) {
 $app->add(new Middleware\ValidationErrorsMiddleware($container));
 $app->add(new Middleware\OldInputsMiddleware($container));
 
+//custom rules validation
+v::with('Validation\\Rules');
+
+//authentification
+$container['auth'] = function($c){
+  return new Auth\Auth;
+};
+
 //view
 $container['view'] = function ($c) {
     $settings = $c->get('settings')['renderer'];
@@ -53,6 +64,11 @@ $container['view'] = function ($c) {
         $c->router,
         $c->request->getUri()
     ));
+
+    $view->getEnvironment()->addGlobal('auth', [
+      'check' => $c->auth->check(),
+      'user' => $c->auth->user(),
+    ]);
 
     return $view;
 };
