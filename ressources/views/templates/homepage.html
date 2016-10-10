@@ -1,0 +1,13 @@
+{% extends 'app.html' %}
+
+  {% block content %}
+    <h1 class="text-center text-uppercase">Bienvenue</h1>
+    <div class="jumbotron">
+      <h3 class="text-center">Kebabgram vous permet de retrouver les meilleurs kebab de la planète en photos</h3>
+      <br/>
+      <div class="text-center">
+        <button class="btn btn-primary">Se connecter</button>
+        <button class="btn btn-default"><a href="{{ path_for('auth.signup') }}">Inscription</a></button>
+      </div>
+    </div>
+  {% endblock %}
