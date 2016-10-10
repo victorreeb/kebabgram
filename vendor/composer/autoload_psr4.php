@@ -31,4 +31,5 @@ return array(
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Controllers\\' => array($baseDir . '/src/controllers'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
+    'Auth\\' => array($baseDir . '/src/auth'),
 );

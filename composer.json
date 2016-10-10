@@ -32,7 +32,8 @@
         "Controllers\\": "src/controllers",
         "Models\\": "src/models",
         "Validation\\": "src/validation",
-        "Middleware\\": "src/middleware"
+        "Middleware\\": "src/middleware",
+        "Auth\\": "src/auth"
       }
     },
 	"scripts": {
