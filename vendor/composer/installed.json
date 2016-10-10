@@ -949,79 +949,22 @@
             "php": ">=5.2.7"
         },
         "require-dev": {
-            "symfony/debug": "~2.7",
-            "symfony/phpunit-bridge": "~2.7"
+            "mockery/mockery": "^0.9.4",
+            "phpunit/phpunit": "^5.2||^4.8.24"
         },
-        "time": "2016-10-05 18:57:41",
+        "time": "2016-06-10 07:14:17",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.26-dev"
+                "dev-master": "1.0.x-dev"
             }
         },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Twig_": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com",
-                "homepage": "http://fabien.potencier.org",
-                "role": "Lead Developer"
-            },
-            {
-                "name": "Armin Ronacher",
-                "email": "armin.ronacher@active-4.com",
-                "role": "Project Founder"
-            },
-            {
-                "name": "Twig Team",
-                "homepage": "http://twig.sensiolabs.org/contributors",
-                "role": "Contributors"
-            }
-        ],
-        "description": "Twig, the flexible, fast, and secure template language for PHP",
-        "homepage": "http://twig.sensiolabs.org",
-        "keywords": [
-            "templating"
-        ]
-    },
-    {
-        "name": "slim/twig-view",
-        "version": "2.1.1",
-        "version_normalized": "2.1.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/slimphp/Twig-View.git",
-            "reference": "16fded26a44b8e8e0e041f1cff32afa21daeb284"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/slimphp/Twig-View/zipball/16fded26a44b8e8e0e041f1cff32afa21daeb284",
-            "reference": "16fded26a44b8e8e0e041f1cff32afa21daeb284",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.0",
-            "psr/http-message": "^1.0",
-            "twig/twig": "^1.18"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^4.8.0"
-        },
-        "time": "2016-03-13 20:58:41",
-        "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Slim\\Views\\": "src"
+                "phpDocumentor\\Reflection\\": [
+                    "src/"
+                ]
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -1030,19 +973,107 @@
         ],
         "authors": [
             {
-                "name": "Josh Lockhart",
-                "email": "hello@joshlockhart.com",
-                "homepage": "http://joshlockhart.com"
+                "name": "Mike van Riel",
+                "email": "me@mikevanriel.com"
+            }
+        ]
+    },
+    {
+        "name": "phpdocumentor/reflection-docblock",
+        "version": "3.1.1",
+        "version_normalized": "3.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
+            "reference": "8331b5efe816ae05461b7ca1e721c01b46bafb3e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/8331b5efe816ae05461b7ca1e721c01b46bafb3e",
+            "reference": "8331b5efe816ae05461b7ca1e721c01b46bafb3e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5",
+            "phpdocumentor/reflection-common": "^1.0@dev",
+            "phpdocumentor/type-resolver": "^0.2.0",
+            "webmozart/assert": "^1.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "^0.9.4",
+            "phpunit/phpunit": "^4.4"
+        },
+        "time": "2016-09-30 07:12:33",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "phpDocumentor\\Reflection\\": [
+                    "src/"
+                ]
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mike van Riel",
+                "email": "me@mikevanriel.com"
             }
         ],
-        "description": "Slim Framework 3 view helper built on top of the Twig templating component",
-        "homepage": "http://slimframework.com",
+        "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock."
+    },
+    {
+        "name": "phpunit/php-token-stream",
+        "version": "1.4.8",
+        "version_normalized": "1.4.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/php-token-stream.git",
+            "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
+            "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
+            "shasum": ""
+        },
+        "require": {
+            "ext-tokenizer": "*",
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.2"
+        },
+        "time": "2015-09-15 10:49:45",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sebastian@phpunit.de"
+            }
+        ],
+        "description": "Wrapper around PHP's tokenizer extension.",
+        "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
         "keywords": [
-            "framework",
-            "slim",
-            "template",
-            "twig",
-            "view"
+            "tokenizer"
         ]
     },
     {

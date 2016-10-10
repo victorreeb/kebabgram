@@ -15,8 +15,13 @@ class AuthController extends Controller{
   public function postSignUp($request, $response){
 
     $validation = $this->validator->validate($request, [
+<<<<<<< HEAD
       'name' => v::notEmpty()->length(2, 20)->UserNameAvailable(),
       'email' => v::notEmpty()->noWhitespace()->email()->EmailAvailable(),
+=======
+      'name' => v::notEmpty()->length(2, 20),
+      'email' => v::notEmpty()->noWhitespace()->email(),
+>>>>>>> master
       'password' => v::notEmpty()->noWhitespace(),
     ]);
 
@@ -25,7 +30,11 @@ class AuthController extends Controller{
     }
 
     $user = User::create([
+<<<<<<< HEAD
       'name' => ucfirst($request->getParam('name')),
+=======
+      'name' => $request->getParam('name'),
+>>>>>>> master
       'email' => $request->getParam('email'),
       'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT),
     ]);
@@ -33,6 +42,7 @@ class AuthController extends Controller{
     return $response->withRedirect($this->router->pathFor('home'));
   }
 
+<<<<<<< HEAD
   public function getSignIn($request, $response){
 
     return $this->view->render($response, 'auth/sign_in.html');
@@ -53,6 +63,8 @@ class AuthController extends Controller{
 
   }
 
+=======
+>>>>>>> master
 }
 
 ?>

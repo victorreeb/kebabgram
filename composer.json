@@ -32,8 +32,12 @@
         "Controllers\\": "src/controllers",
         "Models\\": "src/models",
         "Validation\\": "src/validation",
+<<<<<<< HEAD
         "Middleware\\": "src/middleware",
         "Auth\\": "src/auth"
+=======
+        "Middleware\\": "src/middleware"
+>>>>>>> master
       }
     },
 	"scripts": {

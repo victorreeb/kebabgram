@@ -6,12 +6,17 @@
       <h3 class="text-center">Kebabgram vous permet de retrouver les meilleurs kebab de la planète en photos</h3>
       <br/>
       <div class="text-center">
+<<<<<<< HEAD
         {% if (auth.check) %}
           <p>Bonjour <strong>{{ auth.user.name }}</strong></p>
         {% else %}
           <a href="{{ path_for('auth.signin') }}"<button class="btn btn-primary">Se connecter</button></a>
           <a href="{{ path_for('auth.signup') }}"><button class="btn btn-default">Inscription</button></a>
         {% endif %}
+=======
+        <button class="btn btn-primary">Se connecter</button>
+        <button class="btn btn-default"><a href="{{ path_for('auth.signup') }}">Inscription</a></button>
+>>>>>>> master
       </div>
     </div>
   {% endblock %}
