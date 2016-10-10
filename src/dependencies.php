@@ -48,7 +48,6 @@ $container['AuthController'] = function($c) {
 $app->add(new Middleware\ValidationErrorsMiddleware($container));
 $app->add(new Middleware\OldInputsMiddleware($container));
 
-<<<<<<< HEAD
 //custom rules validation
 v::with('Validation\\Rules');
 
@@ -57,8 +56,6 @@ $container['auth'] = function($c){
   return new Auth\Auth;
 };
 
-=======
->>>>>>> master
 //view
 $container['view'] = function ($c) {
     $settings = $c->get('settings')['renderer'];
