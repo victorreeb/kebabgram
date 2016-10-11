@@ -10,7 +10,7 @@ class AuthController extends Controller{
 
   public function getSignUp($request, $response){
 
-    $this->view->render($response, 'auth/sign_up.html');
+    return $this->view->render($response, 'auth/sign_up.html');
   }
 
   public function postSignUp($request, $response){
@@ -33,7 +33,8 @@ class AuthController extends Controller{
     ]);
 
     $this->flash->addMessage('success', 'You have been signed up !');
-
+    $this->flash->addMessage('info', 'You have been automatically logged in.');
+    $this->auth->attempt($user->email, $request->getParam('password'));
     return $response->withRedirect($this->router->pathFor('home'));
   }
 
@@ -57,6 +58,14 @@ class AuthController extends Controller{
     $this->flash->addMessage('info', 'You have been signed in !');
     return $response->withRedirect($this->router->pathFor('home'));
 
+  }
+
+  public function getSignOut($request, $response){
+
+    $this->auth->logout();
+
+    $this->flash->addMessage('info', 'You have been logout !');
+    return $response->withRedirect($this->router->pathFor('home'));
   }
 
 }
