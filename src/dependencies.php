@@ -64,6 +64,11 @@ $container['auth'] = function($c){
   return new Auth\Auth;
 };
 
+//flash messages
+$container['flash'] = function(){
+  return new \Slim\Flash\Messages;
+};
+
 //view
 $container['view'] = function ($c) {
     $settings = $c->get('settings')['renderer'];
@@ -77,6 +82,8 @@ $container['view'] = function ($c) {
       'check' => $c->auth->check(),
       'user' => $c->auth->user(),
     ]);
+
+    $view->getEnvironment()->addGlobal('flash', $c->flash);
 
     return $view;
 };
