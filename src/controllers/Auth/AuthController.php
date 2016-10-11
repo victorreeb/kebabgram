@@ -9,6 +9,7 @@ use Respect\Validation\Validator as v;
 class AuthController extends Controller{
 
   public function getSignUp($request, $response){
+    
     $this->view->render($response, 'auth/sign_up.html');
   }
 

@@ -1,3 +1,3 @@
-vendor/
-logs/app.log
-src/settings.php
+/vendor/
+/logs/app.log
+/src/settings.php

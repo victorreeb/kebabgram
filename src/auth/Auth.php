@@ -28,7 +28,12 @@ class Auth{
   }
 
   public function user(){
-
+    if(empty($_SESSION['user'])){
+      return false;
+    }
+    if(empty(User::find($_SESSION['user']))){
+      return false;
+    }
     return User::find($_SESSION['user']);
   }
 
