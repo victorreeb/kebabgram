@@ -9,7 +9,7 @@ use Respect\Validation\Validator as v;
 class AuthController extends Controller{
 
   public function getSignUp($request, $response){
-    
+
     $this->view->render($response, 'auth/sign_up.html');
   }
 
@@ -22,6 +22,7 @@ class AuthController extends Controller{
     ]);
 
     if($validation->failed()){
+      $this->flash->addMessage('error', 'Some errors have been detected.');
       return $response->withRedirect($this->router->pathFor('auth.signup'));
     }
 
@@ -30,7 +31,9 @@ class AuthController extends Controller{
       'email' => $request->getParam('email'),
       'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT),
     ]);
-  
+
+    $this->flash->addMessage('success', 'You have been signed up !');
+
     return $response->withRedirect($this->router->pathFor('home'));
   }
 
@@ -47,9 +50,11 @@ class AuthController extends Controller{
     );
 
     if(!$auth){
+      $this->flash->addMessage('error', 'Could not sign you in with those details.');
       return $response->withRedirect($this->router->pathFor('auth.signin'));
     }
 
+    $this->flash->addMessage('info', 'You have been signed in !');
     return $response->withRedirect($this->router->pathFor('home'));
 
   }
