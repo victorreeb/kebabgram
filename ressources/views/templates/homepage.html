@@ -6,7 +6,7 @@
       <h3 class="text-center">Kebabgram vous permet de retrouver les meilleurs kebab de la planète en photos</h3>
       <br/>
       <div class="text-center">
-        {% if (auth.check) %}
+        {% if (auth.check and auth.user) %}
           <p>Bonjour <strong>{{ auth.user.name }}</strong></p>
         {% else %}
           <a href="{{ path_for('auth.signin') }}"<button class="btn btn-primary">Se connecter</button></a>
