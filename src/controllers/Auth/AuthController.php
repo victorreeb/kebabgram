@@ -30,7 +30,7 @@ class AuthController extends Controller{
       'email' => $request->getParam('email'),
       'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT),
     ]);
-
+  
     return $response->withRedirect($this->router->pathFor('home'));
   }
 
