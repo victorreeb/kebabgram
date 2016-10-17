@@ -13,17 +13,25 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href=" {{ path_for('home') }} ">Accueil <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Profil</a></li>
         <li><a href="#">Top Kebab-pic'</a></li>
         <li><a href="#">Salade-Tomates-Oignons</a></li>
         <li><a href="#">Classement du  mois</a><li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       {% if auth.check %}
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Changer Mot de Passe</a></li>
-          <li><a href="{{ path_for('auth.signout' )}}">Déconnexion</a></li>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">{{ auth.user.name }} <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Profil</a></li>
+              <li><a href="#">Changer Mot de Passe</a></li>
+              <li class="divider"></li>
+              <li><a href="{{ path_for('auth.signout' )}}">Déconnexion</a></li>
+            </ul>
+          </li>
         </ul>
+      </div>
       {% else %}
         <li><a href=" {{ path_for('auth.signin') }} ">Connexion</a></li>
         <li><a href=" {{ path_for('auth.signup') }} ">Inscription</a></li>
