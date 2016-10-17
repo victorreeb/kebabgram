@@ -57,7 +57,7 @@ $app->add(new Middleware\CsrfViewMiddleware($container));
 $app->add($container->csrf);
 
 //custom rules validation
-v::with('Validation\\Rules');
+v::with('Validation\\rules');
 
 //authentification
 $container['auth'] = function($c){
