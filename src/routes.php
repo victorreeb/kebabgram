@@ -11,3 +11,6 @@ $app->get('/auth/signin', 'AuthController:getSignIn')->setname('auth.signin');
 $app->post('/auth/signin', 'AuthController:postSignIn');
 
 $app->get('/auth/signout', 'AuthController:getSignOut')->setname('auth.signout');
+
+//Import
+$app->get('/auth/images/add', 'ImageController:getAddImage')->setname('auth.images.add');

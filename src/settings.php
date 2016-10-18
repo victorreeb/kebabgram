@@ -9,7 +9,7 @@ return [
           'driver' => 'mysql',
           'host' => 'localhost',
           'database' => 'kebabgram',
-          'username' => 'root',
+          'username' => 'reeb5u',
           'password' => 'root',
           'charset' => 'utf8',
           'collation' => 'utf8_unicode_ci',

@@ -41,7 +41,10 @@ $container['HomepageController'] = function($c) {
   return new \Controllers\HomepageController($c);
 };
 $container['AuthController'] = function($c) {
-  return new \Controllers\Auth\AuthController($c);
+  return new \Controllers\auth\AuthController($c);
+};
+$container['ImageController'] = function($c) {
+  return new \Controllers\upload\ImageController($c);
 };
 
 // csrf
@@ -63,6 +66,7 @@ v::with('Validation\\rules');
 $container['auth'] = function($c){
   return new Auth\Auth;
 };
+
 
 //flash messages
 $container['flash'] = function(){
