@@ -12,6 +12,12 @@ class ImageController extends Controller{
 
   }
 
+  public function postAddImage($request, $response){
+    echo "Post Image \n";
+    $files = $request->getUploadedFiles();
+    var_dump($files['file_image']);
+  }
+
 }
 
 ?>
