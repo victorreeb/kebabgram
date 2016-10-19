@@ -43,6 +43,10 @@ $container['HomepageController'] = function($c) {
 $container['AuthController'] = function($c) {
   return new \Controllers\Auth\AuthController($c);
 };
+$container['ImageController'] = function($c) {
+  return new \Controllers\upload\ImageController($c);
+};
+
 // $container['ProfilController'] = function($c){
 //   return new \Controllers\Profil\ProfilController($c);
 // }
