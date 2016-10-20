@@ -46,6 +46,13 @@ $container['AuthController'] = function($c) {
 $container['ImageController'] = function($c) {
   return new \Controllers\upload\ImageController($c);
 };
+$container['ImageController'] = function($c) {
+  return new \Controllers\upload\ImageController($c);
+};
+
+// $container['ProfilController'] = function($c){
+//   return new \Controllers\Profil\ProfilController($c);
+// }
 
 // csrf
 $container['csrf'] = function($container){
@@ -67,6 +74,7 @@ $container['auth'] = function($c){
   return new Auth\Auth;
 };
 
+//Profil
 
 //flash messages
 $container['flash'] = function(){
