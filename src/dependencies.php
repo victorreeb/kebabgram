@@ -41,7 +41,10 @@ $container['HomepageController'] = function($c) {
   return new \Controllers\HomepageController($c);
 };
 $container['AuthController'] = function($c) {
-  return new \Controllers\Auth\AuthController($c);
+  return new \Controllers\auth\AuthController($c);
+};
+$container['ImageController'] = function($c) {
+  return new \Controllers\upload\ImageController($c);
 };
 $container['ImageController'] = function($c) {
   return new \Controllers\upload\ImageController($c);
@@ -72,7 +75,6 @@ $container['auth'] = function($c){
 };
 
 //Profil
-
 
 //flash messages
 $container['flash'] = function(){
