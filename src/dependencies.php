@@ -51,6 +51,10 @@ $container['ProfilController'] = function($c){
   return new \Controllers\Profil\ProfilController($c);
 };
 
+$container['PasswordController'] = function($c){
+  return new \Controllers\Auth\PasswordController($c);
+};
+
 // csrf
 $container['csrf'] = function($container){
   return new \Slim\Csrf\Guard;
