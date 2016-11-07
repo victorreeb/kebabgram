@@ -11,14 +11,7 @@ class ProfilController extends Controller{
 
   public function getPhoto($request, $response){
     return $this->view->render($response, 'profil/profil.html');
-
-
-
   }
-
-
-
-
 
 }
  ?>

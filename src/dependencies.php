@@ -50,9 +50,13 @@ $container['ImageController'] = function($c) {
   return new \Controllers\upload\ImageController($c);
 };
 
-// $container['ProfilController'] = function($c){
-//   return new \Controllers\Profil\ProfilController($c);
-// }
+$container['ProfilController'] = function($c){
+  return new \Controllers\Profil\ProfilController($c);
+};
+
+$container['PasswordController'] = function($c){
+  return new \Controllers\Auth\PasswordController($c);
+};
 
 // csrf
 $container['csrf'] = function($container){
@@ -73,8 +77,6 @@ v::with('Validation\\Rules\\');
 $container['auth'] = function($c){
   return new Auth\Auth;
 };
-
-//Profil
 
 //flash messages
 $container['flash'] = function(){
