@@ -13,14 +13,5 @@ class ProfilController extends Controller{
     return $this->view->render($response, 'profil/profil.html');
   }
 
-  // public function postPhoto($request, $response){
-  //
-  //
-  //
-  //   return $response->withRedirect($this->router->pathFor('home'));
-  // }
-
-
-
 }
  ?>
