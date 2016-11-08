@@ -19,7 +19,7 @@ class ImageController extends Controller{
     $user = User::find($_SESSION['user']);
 
     // overwrite = true
-    $storage = new \Upload\Storage\FileSystem($_SERVER['DOCUMENT_ROOT'] . 'kebabgram/public/uploads/' . $user->id, true);
+    $storage = new \Upload\Storage\FileSystem($_SERVER['DOCUMENT_ROOT'] . '/kebabgram/public/uploads/' . $user->id, true);
     $file = new \Upload\File('file_image', $storage);
 
     $data = array(
