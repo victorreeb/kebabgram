@@ -18,7 +18,7 @@ $app->post('/auth/images/add', 'ImageController:postAddImage');
 
 
 //Profil
-$app->get('/profil/profil', 'ProfilController:getPhoto')->setname('profil.profil');
+$app->get('/profil', 'ProfilController:index')->setname('auth.profil');
 
 $app->get('/auth/password/change', 'PasswordController:getChangePassword')->setname('auth.password.change');
 $app->post('/auth/password/change', 'PasswordController:postChangePassword');

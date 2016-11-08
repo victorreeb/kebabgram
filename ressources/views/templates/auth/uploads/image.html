@@ -4,9 +4,9 @@
       <fieldset>
         <legend>Ajouter une photo</legend>
         <div class="form-group{{ errors.name ? ' has-error' : ''}}">
-          <label for="inputName" class="col-lg-2 control-label">Nom de la photo</label>
+          <label for="inputName" class="col-lg-2 control-label">Nom</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" name="name" id="inputName" placeholder="..." value="">
+            <input type="text" class="form-control" name="name" id="inputName" placeholder="..." value="" required>
             <span class="help-block">par défaut le nom de la photo importée</span>
             {% if errors.name %}
               <span class="help-block"> {{ errors.name | first }}</span>
@@ -14,18 +14,27 @@
           </div>
         </div>
         <div class="form-group{{ errors.place ? ' has-error' : ''}}">
-          <label for="inputPlace" class="col-lg-2 control-label">Lieu de la photo</label>
+          <label for="inputTag" class="col-lg-2 control-label">Tag</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" name="place" id="inputPlace" placeholder="Paris, France" value="">
+            <input type="text" class="form-control" name="tag" id="inputTag" placeholder="kebab" value="" required>
+            {% if errors.tag %}
+              <span class="help-block"> {{ errors.tag | first }}</span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="form-group{{ errors.place ? ' has-error' : ''}}">
+          <label for="inputPlace" class="col-lg-2 control-label">Lieu</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="place" id="inputPlace" placeholder="Paris, France" value="" required>
             {% if errors.place %}
               <span class="help-block"> {{ errors.place | first }}</span>
             {% endif %}
           </div>
         </div>
         <div class="form-group{{ errors.file_image ? ' has-error' : ''}}">
-          <label for="inputImage" class="col-lg-2 control-label">Votre photo</label>
+          <label for="inputImage" class="col-lg-2 control-label">Ajouter la photo</label>
           <div class="col-lg-10">
-            <input type="file" name="file_image" id="inputImage" value=""/>
+            <input type="file" name="file_image" id="inputImage" value="" required>
             {% if errors.file_image %}
               <span class="help-block"> {{ errors.file_image | first }}</span>
             {% endif %}
