@@ -1,0 +1,45 @@
+{% extends 'app.html' %}
+  {% block content %}
+      <div class="col-md-4">
+        <h3>Vos Informations</h3><br>
+        <div class="col-md-12">
+          <p><strong>Pseudo : </strong>{{ auth.user.name }}</p>
+          <p><strong>Email : </strong>{{ auth.user.email }}</p>
+          <p><strong>Mot de passe : <a href="{{ path_for('auth.password.change') }}">changer</a></p>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <h3>Vos Photos</h3><br>
+        {% if images %}
+          {% set image_row = 1 %}
+          {% for image in images %}
+
+            {% if image_row == 1 %}
+              <div class="row" style="height: 100%;">
+            {% endif %}
+
+            <div class="col-md-4">
+              <img class="img-responsive" src="{{ image }}">
+            </div>
+
+            {% if image_row == 3 %}
+              </div>
+              <br>
+              {% set image_row = 1 %}
+            {% else %}
+              {% set image_row = image_row + 1 %}
+            {% endif %}
+
+          {% endfor %}
+          {% if image_row == 3 or image_row == 2 %}
+            </div>
+            <br>
+          {% endif %}
+        {% else %}
+          <h4>Vous n'avez pas encore ajouté de photos.</h4>
+        {% endif %}
+        <hr>
+        <a href="{{ path_for('auth.images.add')}}">ajouter une photo</a>
+    </div>
+{% endblock %}
