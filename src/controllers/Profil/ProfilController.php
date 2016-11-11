@@ -12,7 +12,7 @@ class ProfilController extends Controller{
     if(!empty($photos)){
       $images = [];
       foreach ($photos as $photo) {
-        array_push($images, "/kebabgram/public/uploads/" . $_SESSION['user'] . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension);
+        array_push($images, ['id' => $photo->id, 'link' => "/kebabgram/public/uploads/" . $_SESSION['user'] . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
       }
       return $this->view->render($response, 'auth/profil/index.html', ['images' => $images]);
     }

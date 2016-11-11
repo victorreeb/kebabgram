@@ -13,7 +13,8 @@ class Photo extends Model{
     'name',
     'place',
     'id_user',
-    'extension'
+    'extension',
+    'description'
   ];
 
 

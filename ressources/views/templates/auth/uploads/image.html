@@ -2,21 +2,20 @@
   {% block content %}
     <form class="form-horizontal" action=" {{ path_for('auth.images.add') }}" enctype="multipart/form-data" method="post" autocomplete="off">
       <fieldset>
-        <legend>Ajouter une photo</legend>
+        <legend>Ajouter votre photo</legend>
         <div class="form-group{{ errors.name ? ' has-error' : ''}}">
           <label for="inputName" class="col-lg-2 control-label">Nom</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" name="name" id="inputName" placeholder="..." value="" required>
-            <span class="help-block">par défaut le nom de la photo importée</span>
+            <input type="text" class="form-control" name="name" id="inputName" placeholder="..." value="{{ old_inputs.name }}" >
             {% if errors.name %}
               <span class="help-block"> {{ errors.name | first }}</span>
             {% endif %}
           </div>
         </div>
-        <div class="form-group{{ errors.place ? ' has-error' : ''}}">
+        <div class="form-group{{ errors.tag ? ' has-error' : ''}}">
           <label for="inputTag" class="col-lg-2 control-label">Tag</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" name="tag" id="inputTag" placeholder="kebab" value="" required>
+            <input type="text" class="form-control" name="tag" id="inputTag" placeholder="#kebab" value="{{ old_inputs.tag }}" >
             {% if errors.tag %}
               <span class="help-block"> {{ errors.tag | first }}</span>
             {% endif %}
@@ -25,18 +24,28 @@
         <div class="form-group{{ errors.place ? ' has-error' : ''}}">
           <label for="inputPlace" class="col-lg-2 control-label">Lieu</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" name="place" id="inputPlace" placeholder="Paris, France" value="" required>
+            <input type="text" class="form-control" name="place" id="inputPlace" placeholder="Paris, France" value="{{ old_inputs.place }}" >
             {% if errors.place %}
               <span class="help-block"> {{ errors.place | first }}</span>
             {% endif %}
           </div>
         </div>
-        <div class="form-group{{ errors.file_image ? ' has-error' : ''}}">
-          <label for="inputImage" class="col-lg-2 control-label">Ajouter la photo</label>
+        <div class="form-group{{ errors.description ? ' has-error' : ''}}">
+          <label for="inputDescription" class="col-lg-2 control-label">Description</label>
           <div class="col-lg-10">
-            <input type="file" name="file_image" id="inputImage" value="" required>
+            <input type="text" class="form-control" name="description" id="inputDescription" placeholder="Le meilleur kebab du monde" value="{{ old_inputs.description }}" ></input>
+            {% if errors.description %}
+              <span class="help-block"> {{ errors.description | first }}</span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="form-group{{ errors.file_image ? ' has-error' : ''}}">
+          <label for="inputImage" class="col-lg-2 control-label">Photo</label>
+          <div class="col-lg-10">
+            <input type="file" name="file_image" id="inputImage" value="" >
+            <span class="help-block">formats acceptés : .png / .jpg</span>
             {% if errors.file_image %}
-              <span class="help-block"> {{ errors.file_image | first }}</span>
+              <span class="help-block"> {{ errors.file_image }}</span>
             {% endif %}
           </div>
         </div>
