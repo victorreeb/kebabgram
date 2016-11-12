@@ -23,6 +23,7 @@ $app->get('/profil', 'ProfilController:index')->setname('auth.profil');
 
 //images
 $app->get('/images', 'ImageController:index')->setname('images');
+$app->get('/images/bestof', 'ImageController:index_best')->setname('images.bestof');
 $app->get('/{name}/images', 'ImageController:index_images_user')->setname('images.user.index');
 $app->get('/{name}/images/{id}', 'ImageController:show_images_user')->setname('images.user.show');
 $app->post('/{name}/images/{id}', 'ImageController:edit_images_user')->setname('images.user.edit');
