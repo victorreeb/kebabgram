@@ -5,6 +5,13 @@
     <div class='row'>
       <div class='col-md-8'>
         <img class="img-responsive" src="{{ link }}">
+        {% if photo.moyenne != 0 %}
+        <small>notation</small>
+        <div class="progress progress-striped active" style="height: 15px;">
+          <div class="progress-bar progress-bar-warning" style="width:{{ photo.moyenne * 10 }}%;"><p style="font-size: 2em; line-height: 15px;">{{photo.moyenne}}</p></div>
+          <p class="text-center" style="color:#ff7518; line-height: 15px;"><b>10</b></p>
+        </div>
+        {% endif %}
         <div class='row'>
           <div class='col-md-10 col-offset-1'>
             <h3><strong>Description</strong></h3>
@@ -15,7 +22,30 @@
       <div class='col-md-4'>
         <h3>{{ photo.tag }}</h3>
         <h3><small><strong>à</strong></small> {{ photo.place }}</h3>
-
+        <br>
+        {% if auth.check %}
+          {% if vote == true %}
+            <form class="form-horizontal" action=" {{ path_for('image.noter', {'name' : user, 'id' : photo.id}) }}" enctype="multipart/form-data" method="post" autocomplete="off">
+              <fieldset>
+                <legend>Noter sur 10</legend>
+                <div class="form-group{{ errors.note ? ' has-error' : ''}}">
+                  <div class="col-lg-12">
+                    <input type="number" class="form-control" name="note" id="inputNote" min=0 max=10 required>
+                    {% if errors.note %}
+                      <span class="help-block"> {{ errors.note | first }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+                {{ csrf.field | raw }}
+                <div class="form-group">
+                  <div class="col-lg-12">
+                    <button type="submit" class="btn btn-primary">Noter</button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          {% endif %}
+        {% endif %}
       </div>
     </div>
   {% endblock %}

@@ -5,9 +5,25 @@ namespace Controllers\Upload;
 use \Controllers\Controller;
 use Models\User;
 use Models\Photo;
+use Models\Note;
 use Respect\Validation\Validator as v;
 
 class ImageController extends Controller{
+
+  public function index($request, $response){
+    $photos = Photo::all();
+    if(!empty($photos)){
+      $images = [];
+      foreach ($photos as $photo) {
+        $user = User::where('id', '=', $photo->id_user)->first();
+        array_push($images, ['user' => $user, 'name' => $photo->name, 'id' => $photo->id, 'link' => "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
+      }
+      return $this->view->render($response, 'images/index.html', ['images' => $images]);
+    }
+    else{
+      return $this->view->render($response, 'images/index.html');
+    }
+  }
 
   public function getAddImage ($request, $response){
 
@@ -62,6 +78,7 @@ class ImageController extends Controller{
           'place' => $data['place'],
           'extension' => $data['extension'],
           'description' => $data['description'],
+          'moyenne' => 0,
           'id_user' => $user->id
         ]);
 
@@ -93,7 +110,7 @@ class ImageController extends Controller{
       if(!empty($photos)){
         $images = [];
         foreach ($photos as $photo) {
-          array_push($images, ['id' => $photo->id, 'link' => "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
+          array_push($images, ['name' => $photo->name, 'id' => $photo->id, 'link' => "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
         }
         return $this->view->render($response, 'images/users/index.html', ['images' => $images, 'user' => $user]);
       }
@@ -110,11 +127,24 @@ class ImageController extends Controller{
       $photo = Photo::find($id)->first();
       if(!empty($photo)){
         $user = User::where('id', '=', $photo->id_user)->first();
-        if($_SESSION['user'] == $user->id){
-          return $this->view->render($response, 'images/users/edit.html', ['user' => $user->name, 'photo' => $photo, 'link' => "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
+
+        //check if user has already give a note
+        $vote_boolean = true;
+        $note = Note::where('id_user', '=', $_SESSION['user'])->where('id_photo', '=', $photo->id)->first();
+        if(!empty($note)){
+          $vote_boolean = false;
+        }
+
+        if(!empty($_SESSION['user'])){
+          if($_SESSION['user'] == $user->id){
+            return $this->view->render($response, 'images/users/edit.html', ['user' => $user->name, 'photo' => $photo, 'link' => "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
+          }
+          else{
+            return $this->view->render($response, 'images/users/show.html', ['vote' => $vote_boolean, 'user' => $user->name, 'photo' => $photo, 'link' => "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
+          }
         }
         else{
-          return $this->view->render($response, 'images/users/show.html', ['user' => $user->name, 'photo' => $photo, 'link' => "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
+          return $this->view->render($response, 'images/users/show.html', ['vote' => $vote_boolean, 'user' => $user->name, 'photo' => $photo, 'link' => "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
         }
       }
     }
@@ -168,6 +198,57 @@ class ImageController extends Controller{
     $this->flash->addMessage('success', 'L\'image a bien été supprimée.');
     return $response->withRedirect($this->router->pathFor('auth.profil'));
 
+  }
+
+  public function noter($request, $response, $id){
+    $photo = Photo::find($id)->first();
+    $user = User::where('id', '=', $photo->id_user)->first();
+
+    // validation
+    $validation = $this->validator->validate($request, [
+      'note' => v::alnum()
+    ]);
+    if($validation->failed()){
+      $this->flash->addMessage('error', 'Some errors have been detected.');
+      return $response->withRedirect($this->router->pathFor('images.user.show', ['name' => $user->name, 'id' => $photo->id]));
+    }
+    $param_note = $request->getParam('note');
+
+    if($param_note < 0){
+      $param_note = 0;
+    }
+    elseif($param_note > 10){
+      $param_note = 10;
+    }
+
+    Note::create([
+      'id_photo' => $photo->id,
+      'valeur' => $param_note,
+      'id_user' => $_SESSION['user']
+    ]);
+
+
+    $notes = Note::where('id_photo', '=', $photo->id)->get();
+
+    if(!empty($notes)){
+      $moyenne = 0;
+      $coef = 0;
+      $deno = 0;
+      foreach ($notes as $note) {
+        $coef = $note->valeur + $coef;
+        $deno = $deno +1;
+      }
+      if($deno == 0){
+        $deno = 1;
+      }
+      $moyenne = $coef / $deno;
+      $photo->moyenne = $moyenne;
+    }
+    else{
+      $photo->moyenne = $param_note;
+    }
+    $photo->save();
+    return $response->withRedirect($this->router->pathFor('images.user.show', ['name' => $user->name, 'id' => $photo->id]));
   }
 
 

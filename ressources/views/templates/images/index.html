@@ -1,8 +1,8 @@
 {% extends 'app.html' %}
   {% block content %}
-    <div class="row">
+    <div class='row'>
       <div class="col-md-12">
-        <h3 class="text-center">Photos de <strong>{{ user.name }}</strong></h3><br>
+        <h3 class="text-center">Wall of Kebab</h3><br>
         <hr>
       </div>
     </div>
@@ -17,8 +17,8 @@
             {% endif %}
 
             <div class="col-md-4">
-              <label for="{{ image.name }}" class="italic"><h4><em>{{ image.name }}</em></h4></label>
-              <a href="{{ path_for('images.user.show', {'name' : user.name, 'id' : image.id}) }}" id="{{ image.name }}">
+              <label for="{{ image.name }}" class="italic"><h4><em>{{ image.name }}</em> - <small>{{image.user.name}}</small></h4></label>
+              <a href="{{ path_for('images.user.show', {'name' : image.user.name, 'id' : image.id}) }}" id="{{ image.name }}">
                 <img class="img-responsive" src="{{ image.link }}">
               </a>
             </div>
@@ -37,8 +37,9 @@
             <br>
           {% endif %}
         {% else %}
-          <h4 class="text-center">{{ user.name }} ne possède aucune photo.</h4>
+          <h4 class="text-center">Aucune photo n'est disponible pour le moment. Inscrivez-vous pour en ajouter au "Wall of Kebab".</h4>
         {% endif %}
       </div>
     </div>
+
 {% endblock %}

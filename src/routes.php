@@ -22,10 +22,13 @@ $app->post('/auth/images/{id}/delete', 'ImageController:delete_images_user')->se
 $app->get('/profil', 'ProfilController:index')->setname('auth.profil');
 
 //images
+$app->get('/images', 'ImageController:index')->setname('images');
 $app->get('/{name}/images', 'ImageController:index_images_user')->setname('images.user.index');
 $app->get('/{name}/images/{id}', 'ImageController:show_images_user')->setname('images.user.show');
 $app->post('/{name}/images/{id}', 'ImageController:edit_images_user')->setname('images.user.edit');
 
+//notes
+$app->post('/{name}/images/{id}/noter', 'ImageController:noter')->setname('image.noter');
 
 //password
 $app->get('/auth/password/change', 'PasswordController:getChangePassword')->setname('auth.password.change');
