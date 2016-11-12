@@ -9,16 +9,22 @@ use \Controllers\Controller;
 class ProfilController extends Controller{
 
   public function index($request, $response){
-    $photos = Photo::where('id_user', $_SESSION['user'])->get();
-    $user = User::find($_SESSION['user']);
-    if(!empty($photos)){
-      $images = [];
-      foreach ($photos as $photo) {
-        array_push($images, ['name' => $photo->name, 'tag' => $photo->tag, 'id' => $photo->id, 'link' => "/kebabgram/public/uploads/" . $_SESSION['user'] . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
+    if(!empty($_SESSION['user'])){
+      $photos = Photo::where('id_user', $_SESSION['user'])->get();
+      $user = User::find($_SESSION['user']);
+      if(!empty($photos)){
+        $images = [];
+        foreach ($photos as $photo) {
+          array_push($images, ['name' => $photo->name, 'tag' => $photo->tag, 'id' => $photo->id, 'link' => "/kebabgram/public/uploads/" . $_SESSION['user'] . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
+        }
+        return $this->view->render($response, 'auth/profil/index.html', ['images' => $images, 'user' => $user->name]);
       }
-      return $this->view->render($response, 'auth/profil/index.html', ['images' => $images, 'user' => $user->name]);
+      return $this->view->render($response, 'auth/profil/index.html');
     }
-    return $this->view->render($response, 'auth/profil/index.html');
+    else{
+      $this->flash->addMessage('warning', 'Merci de vous connecter pour accéder à votre profil !');
+      return $response->withRedirect($this->router->pathFor('auth.signin'));
+    }
   }
 
 }
