@@ -9,11 +9,13 @@ class Photo extends Model{
   protected $table = 'photos'; // optionnal
 
   protected $fillable = [
+    'id',
     'tag',
     'name',
     'place',
     'id_user',
-    'extension'
+    'extension',
+    'description'
   ];
 
 

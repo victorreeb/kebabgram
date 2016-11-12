@@ -1,0 +1,56 @@
+{% extends 'app.html' %}
+  {% block content %}
+    <h2><strong>{{ photo.name }}</strong><small> de <em>{{ user }}</em></small></h2>
+    <hr>
+    <div class='row'>
+      <div class='col-md-8'>
+        <img class="img-responsive" src="{{ link }}">
+      </div>
+      <div class='col-md-4'>
+        <form class="form-horizontal" action=" {{ path_for('images.user.edit', {'name' : user, 'id' : photo.id}) }}" enctype="multipart/form-data" method="post" autocomplete="off">
+          <fieldset>
+            <h2>Modifier ma photo</h2>
+            <div class="form-group{{ errors.tag ? ' has-error' : ''}}">
+              <h4 for="inputTag"><strong>Tag</strong></h4>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="tag" id="inputTag" placeholder="{{ photo.tag }}" value="{{ photo.tag }}" >
+                <span class="help-block">Séparez vos hashtags avec la balise #</span>
+                {% if errors.tag %}
+                  <span class="help-block"> {{ errors.tag | first }}</span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group{{ errors.place ? ' has-error' : ''}}">
+              <h4 for="inputPlace"><strong>Lieu</strong></h4>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="place" id="inputPlace" placeholder="{{ photo.place }}" value="{{ photo.place }}" >
+                {% if errors.place %}
+                  <span class="help-block"> {{ errors.place | first }}</span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group{{ errors.description ? ' has-error' : ''}}">
+              <h4 for="inputDescription"><strong>Description</strong></h4>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="description" id="inputDescription" placeholder="{{ photo.description }}" value="{{ photo.description }}" ></input>
+                {% if errors.description %}
+                  <span class="help-block"> {{ errors.description | first }}</span>
+                {% endif %}
+              </div>
+            </div>
+            {{ csrf.field | raw }}
+            <div class="form-group">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">Modifier</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <form class="form-horizontal" action=" {{ path_for('auth.images.delete', {'id' : photo.id}) }}" enctype="multipart/form-data" method="post" autocomplete="off">
+          <h2>Supprimer ma photo</h2>
+          {{ csrf.field | raw }}
+          <button type="submit" class="btn btn-danger">Supprimer la photo</button>
+        </form>
+      </div>
+    </div>
+  {% endblock %}
