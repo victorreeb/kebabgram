@@ -27,8 +27,8 @@ class AuthController extends Controller{
     }
 
     $user = User::create([
-      'name' => ucfirst($request->getParam('name')),
-      'email' => $request->getParam('email'),
+      'name' => strtolower($request->getParam('name')),
+      'email' => strtolower($request->getParam('email')),
       'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT),
     ]);
 

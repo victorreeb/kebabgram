@@ -6,7 +6,7 @@
         <div class="form-group{{ errors.name ? ' has-error' : ''}}">
           <label for="inputName" class="col-lg-2 control-label">Nom</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" name="name" id="inputName" placeholder="..." value="{{ old_inputs.name }}" >
+            <input type="text" class="form-control" name="name" id="inputName" placeholder="MyBestKebab" value="{{ old_inputs.name }}" >
             {% if errors.name %}
               <span class="help-block"> {{ errors.name | first }}</span>
             {% endif %}
@@ -15,7 +15,8 @@
         <div class="form-group{{ errors.tag ? ' has-error' : ''}}">
           <label for="inputTag" class="col-lg-2 control-label">Tag</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" name="tag" id="inputTag" placeholder="#kebab" value="{{ old_inputs.tag }}" >
+            <input type="text" class="form-control" name="tag" id="inputTag" placeholder="kebab" value="{{ old_inputs.tag }}" >
+            <span class="help-block">Séparez vos hashtags avec la balise #</span>
             {% if errors.tag %}
               <span class="help-block"> {{ errors.tag | first }}</span>
             {% endif %}

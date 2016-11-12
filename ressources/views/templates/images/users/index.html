@@ -1,18 +1,10 @@
 {% extends 'app.html' %}
   {% block content %}
-      <div class="col-md-4">
-        <h3>Vos Informations</h3><br>
-        <div class="col-md-12">
-          <p><strong>Pseudo : </strong>{{ auth.user.name }}</p>
-          <p><strong>Email : </strong>{{ auth.user.email }}</p>
-          <p><strong><a href="{{ path_for('auth.password.change') }}">changer mon mot de passe</a></p>
-        </div>
-      </div>
-
-      <div class="col-md-8">
-        <h3>Vos Photos</h3><br>
-        <a href="{{ path_for('auth.images.add')}}">ajouter une photo</a>
+      <div class="col-md-12">
+        <h3 class="text-center">Photos de <strong>{{ user.name }}</strong></h3><br>
         <hr>
+      </div>
+      <div class="col-md-8">
         {% if images %}
           {% set image_row = 1 %}
           {% for image in images %}
@@ -22,8 +14,7 @@
             {% endif %}
 
             <div class="col-md-4">
-              <label for="{{ image.name }}" class="italic"><h4><em>{{ image.name }}</em></h4></label>
-              <a href="{{ path_for('images.user.show', {'name' : user, 'id' : image.id}) }}" id="{{ image.name }}">
+              <a href="{{ path_for('images.user.show', {'name' : user.name, 'id' : image.id}) }}">
                 <img class="img-responsive" src="{{ image.link }}">
               </a>
             </div>
@@ -42,7 +33,7 @@
             <br>
           {% endif %}
         {% else %}
-          <h4>Vous ne possédez aucune photo.</h4>
+          <h4>{{ user.name }} ne possède aucune photo.</h4>
         {% endif %}
     </div>
 {% endblock %}

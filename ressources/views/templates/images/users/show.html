@@ -1,0 +1,21 @@
+{% extends 'app.html' %}
+  {% block content %}
+    <h2><strong>{{ photo.name }}</strong><small> de <em>{{ user }}</em></small></h2>
+    <hr>
+    <div class='row'>
+      <div class='col-md-8'>
+        <img class="img-responsive" src="{{ link }}">
+        <div class='row'>
+          <div class='col-md-10 col-offset-1'>
+            <h3><strong>Description</strong></h3>
+            <p>{{ photo.description }} </p>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4'>
+        <h3>{{ photo.tag }}</h3>
+        <h3><small><strong>à</strong></small> {{ photo.place }}</h3>
+
+      </div>
+    </div>
+  {% endblock %}
