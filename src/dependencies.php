@@ -62,6 +62,10 @@ $container['SearchController'] = function($c){
   return new \Controllers\SearchController($c);
 };
 
+$container['VideoController'] = function($c){
+  return new \Controllers\VideoController($c);
+};
+
 // csrf
 $container['csrf'] = function($container){
   return new \Slim\Csrf\Guard;

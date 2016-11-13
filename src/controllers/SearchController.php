@@ -42,9 +42,10 @@ class SearchController extends Controller{
           $photos_by_name = Photo::where('name', 'like', '%' . $query .'%')->get();
           $results['photos_by_name'] = $photos_by_name;
           foreach ($results['photos_by_name'] as $photo) {
-            $user = User::find($photo->id_user)->first();
+            $user = User::find($photo->id_user);
             $photo['user'] = $user->name;
             $photo['link'] = "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension;
+            unset($user);
           }
         }
 
@@ -52,9 +53,10 @@ class SearchController extends Controller{
           $photos_by_place = Photo::where('place', 'like', '%' . $query .'%')->get();
           $results['photos_by_place'] = $photos_by_place;
           foreach ($results['photos_by_place'] as $photo) {
-            $user = User::find($photo->id_user)->first();
+            $user = User::find($photo->id_user);
             $photo['user'] = $user->name;
             $photo['link'] = "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension;
+            unset($user);
           }
         }
 
@@ -62,9 +64,10 @@ class SearchController extends Controller{
           $photos_by_tag = Photo::where('tag', 'like', '%' . $query .'%')->get();
           $results['photos_by_tag'] = $photos_by_tag;
           foreach ($results['photos_by_tag'] as $photo) {
-            $user = User::find($photo->id_user)->first();
+            $user = User::find($photo->id_user);
             $photo['user'] = $user->name;
             $photo['link'] = "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension;
+            unset($user);
           }
         }
         return $this->view->render($response, 'results.html', ["results" => $results, "query" => $query, "by_user" => $option_by_user, "by_name" => $option_by_name, "by_place" => $option_by_place, "by_tag" => $option_by_tag]);

@@ -37,6 +37,8 @@ $app->get('/', 'HomepageController:index')->setname('home');
 $app->get('/search', 'SearchController:index')->setname('search');
 $app->post('/search', 'SearchController:search');
 
+$app->get('/videos', 'VideoController:index')->setname('videos');
+
 //Profil
 $app->get('/profil', 'ProfilController:index')->setname('auth.profil');
 
