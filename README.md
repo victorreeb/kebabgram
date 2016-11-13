@@ -39,6 +39,12 @@ Le projet doit mettre en oeuvre les solutions vues en cours :
 
 # Installer
 
-Fork le projet dans votre /www
-lancer un terminal, tapez :
+Récupérer le projet dans votre /www
+Récupérer la base de données dans /ressources/database/kebabgram.sql et l'installer sur mysql
+Mettre à jour les données de configuration pour la base de données dans le fichier /src/settings.php
+Lancer un terminal à la racine de l'archive, tapez :
   composer install
+ 
+ 
+
+ 
