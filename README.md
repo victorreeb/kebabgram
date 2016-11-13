@@ -40,10 +40,10 @@ Le projet doit mettre en oeuvre les solutions vues en cours :
 # Installer
 
 Récupérer le projet dans votre /www
-Récupérer la base de données dans /ressources/database/kebabgram.sql et l'installer sur mysql
-Mettre à jour les données de configuration pour la base de données dans le fichier /src/settings.php
-Lancer un terminal à la racine de l'archive, tapez :
-  composer install
+<br/>Récupérer la base de données dans /ressources/database/kebabgram.sql et l'installer sur mysql
+<br/>Mettre à jour les données de configuration pour la base de données dans le fichier /src/settings.php
+<br/>Lancer un terminal à la racine de l'archive, tapez :
+<br/>  composer install
  
  
 
