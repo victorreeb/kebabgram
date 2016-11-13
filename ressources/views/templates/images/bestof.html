@@ -1,5 +1,11 @@
 {% extends 'app.html' %}
   {% block content %}
+    <div class='row'>
+      <div class="col-md-12">
+        <h3 class="text-center">Best of Kebab</h3>
+        <hr>
+      </div>
+    </div>
     {% if images %}
       <div class="row">
         <div class="col-md-12">
@@ -43,5 +49,7 @@
           {% endif %}
         </div>
       </div>
-    {% endif %}
+      {% else %}
+        <h4 class="text-center">Aucune photo n'est disponible pour le moment. Inscrivez-vous pour en ajouter au "Best of Kebab".</h4>
+      {% endif %}
   {% endblock %}
