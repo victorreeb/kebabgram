@@ -19,10 +19,11 @@ class SearchController extends Controller{
     $option_by_tag = $request->getParam('by_tag');
     $option_by_place = $request->getParam('by_place');
     $option_by_name = $request->getParam('by_name');
+    $option_by_description = $request->getParam('by_description');
 
     if($query != '' or $query != null){
 
-      if($option_by_user == null and $option_by_name == null and $option_by_place == null and $option_by_tag == null){
+      if($option_by_user == null and $option_by_name == null and $option_by_place == null and $option_by_tag == null and $option_by_description == null){
         $this->flash->addMessage('error', 'Veuillez cocher au moins une option de recherche.');
         return $response->withRedirect($this->router->pathFor('search'));
       }
@@ -70,15 +71,23 @@ class SearchController extends Controller{
             unset($user);
           }
         }
-        return $this->view->render($response, 'results.html', ["results" => $results, "query" => $query, "by_user" => $option_by_user, "by_name" => $option_by_name, "by_place" => $option_by_place, "by_tag" => $option_by_tag]);
+
+        if($option_by_description != null){
+          $photos_by_description = Photo::where('description', 'like', '%' . $query .'%')->get();
+          $results['photos_by_description'] = $photos_by_description;
+          foreach ($results['photos_by_description'] as $photo) {
+            $user = User::find($photo->id_user);
+            $photo['user'] = $user->name;
+            $photo['link'] = "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension;
+            unset($user);
+          }
+        }
+        return $this->view->render($response, 'results.html', ["results" => $results, "query" => $query, "by_user" => $option_by_user, "by_name" => $option_by_name, "by_place" => $option_by_place, "by_tag" => $option_by_tag, "by_description" => $option_by_description]);
       }
 
     }
     $this->flash->addMessage('error', 'Veuillez saisir un mot-clé.');
     return $response->withRedirect($this->router->pathFor('search'));
-    // search in all tables from Database
-
-    //
   }
 
 }
