@@ -34,6 +34,9 @@ $app->group('', function(){
 // Homepage
 $app->get('/', 'HomepageController:index')->setname('home');
 
+$app->get('/search', 'SearchController:index')->setname('search');
+$app->post('/search', 'SearchController:search');
+
 //Profil
 $app->get('/profil', 'ProfilController:index')->setname('auth.profil');
 

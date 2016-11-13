@@ -1,0 +1,41 @@
+{% extends 'app.html' %}
+  {% block content %}
+    <h2 class="text-center">Retrouver facilement votre contenu préféré avec notre recherche KebabSearch</h2>
+    <hr>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <form class="form-horizontal" action=" {{ path_for('search') }}" method="post" role="search" autocomplete="off">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="mot-clé" name="query" value="{{ old_inputs.query }}">
+            <div class="row">
+              <div class="checkbox">
+                <h3>Options de recherche</h3>
+                <div class="col-md-6">
+                  <h4>Utilisateurs</h4>
+                  <label>
+                    <input type="checkbox" name="by_user">par utilisateur
+                  </label>
+                </div>
+                <div class="col-md-6">
+                  <h4>Photos</h4>
+                  <label>
+                    <input type="checkbox" name="by_tag">par tag
+                  </label>
+                  <br>
+                  <label>
+                    <input type="checkbox" name="by_place">par lieu
+                  </label>
+                  <br>
+                  <label>
+                    <input type="checkbox" name="by_name">par nom
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{ csrf.field | raw }}
+          <button type="submit" class="btn btn-default">Rechercher</button>
+        </form>
+      </div>
+    </div>
+  {% endblock %}
