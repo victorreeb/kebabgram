@@ -32,8 +32,7 @@ class AuthController extends Controller{
       'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT),
     ]);
 
-    // creation du directory upload du user : droit lecture & écriture pour le propriétaire && lecture pour les autres
-    mkdir($_SERVER['DOCUMENT_ROOT'] . '/kebabgram/public/uploads/' . $user->id, 0644);
+    mkdir($_SERVER['DOCUMENT_ROOT'] . '/kebabgram/public/uploads/' . $user->id, 0777);
 
     $this->flash->addMessage('success', 'You have been signed up !');
     $this->flash->addMessage('info', 'You have been automatically logged in.');
