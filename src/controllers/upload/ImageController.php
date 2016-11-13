@@ -25,6 +25,19 @@ class ImageController extends Controller{
     }
   }
 
+  public function index_best($request, $response){
+    $photos = Photo::orderBy('moyenne', 'desc')->take(30)->get();
+    if(!empty($photos)){
+      $images = [];
+      foreach ($photos as $photo) {
+        $user = User::where('id', '=', $photo->id_user)->first();
+        array_push($images, ['user' => $user, 'moyenne' => $photo->moyenne, 'name' => $photo->name, 'id' => $photo->id, 'link' => "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
+      }
+          return $this->view->render($response, 'images/bestof.html', ['images' => $images]);
+    }
+    return $this->view->render($response, 'images/bestof.html');
+  }
+
   public function getAddImage ($request, $response){
 
     return $this->view->render($response, 'auth/uploads/image.html');
@@ -128,14 +141,13 @@ class ImageController extends Controller{
       if(!empty($photo)){
         $user = User::where('id', '=', $photo->id_user)->first();
 
-        //check if user has already give a note
-        $vote_boolean = true;
-        $note = Note::where('id_user', '=', $_SESSION['user'])->where('id_photo', '=', $photo->id)->first();
-        if(!empty($note)){
-          $vote_boolean = false;
-        }
-
+        $vote_boolean = false;
         if(!empty($_SESSION['user'])){
+          //check if user has already give a note
+          $note = Note::where('id_user', '=', $_SESSION['user'])->where('id_photo', '=', $photo->id)->first();
+          if(empty($note)){
+            $vote_boolean = true;
+          }
           if($_SESSION['user'] == $user->id){
             return $this->view->render($response, 'images/users/edit.html', ['user' => $user->name, 'photo' => $photo, 'link' => "/kebabgram/public/uploads/" . $user->id . "/" . $photo->id . "_" . $photo->name . "." . $photo->extension]);
           }

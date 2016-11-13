@@ -58,6 +58,10 @@ $container['PasswordController'] = function($c){
   return new \Controllers\Auth\PasswordController($c);
 };
 
+$container['SearchController'] = function($c){
+  return new \Controllers\SearchController($c);
+};
+
 // csrf
 $container['csrf'] = function($container){
   return new \Slim\Csrf\Guard;

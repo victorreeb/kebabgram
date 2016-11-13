@@ -1,23 +1,9 @@
 {% extends 'app.html' %}
-
   {% block content %}
-    <h1 class="text-center text-uppercase">Bienvenue</h1>
-    <div class="jumbotron">
-      <h3 class="text-center">Kebabgram vous permet de retrouver les meilleurs kebab de la planète en photos</h3>
-      <br/>
-      <div class="text-center">
-        {% if (auth.check and auth.user) %}
-
-        {% else %}
-          <a href="{{ path_for('auth.signin') }}"><button class="btn btn-primary">Se connecter</button></a>
-          <a href="{{ path_for('auth.signup') }}"><button class="btn btn-default">Inscription</button></a>
-        {% endif %}
-      </div>
-    </div>
     {% if images %}
       <div class="row">
         <div class="col-md-12">
-          <h2 class="text-center"><b>Les derniers kebab du moment</b></h2>
+          <h2 class="text-center"><b>Les 30 meilleures notes</b></h2>
           {% set image_row = 1 %}
           {% for image in images %}
             {% if image_row == 1 %}
@@ -26,6 +12,17 @@
 
             <div class="col-md-4">
               <label for="{{ image.name }}" class="italic"><h4><em>{{ image.name }}</em> - <small>{{image.user.name}}</small></h4></label>
+              {% if image.moyenne != 0 %}
+                <div class="progress progress-striped active" style="height: 15px;">
+                  <div class="progress-bar progress-bar-warning" style="width:{{ image.moyenne * 10 }}%;"><p style="font-size: 2em; line-height: 15px;">{{image.moyenne}}</p></div>
+                  <p class="text-center" style="color:#ff7518; line-height: 15px;"><b>10</b></p>
+                </div>
+              {% else %}
+              <div class="progress progress-striped active" style="height: 15px;">
+                <div class="progress-bar progress-bar-warning"><p style="font-size: 2em; line-height: 15px;"></p></div>
+                <p class="text-center" style="color:#ff7518; line-height: 15px;"><b>0</b></p>
+              </div>
+              {% endif %}
               <a href="{{ path_for('images.user.show', {'name' : image.user.name, 'id' : image.id}) }}" id="{{ image.name }}">
                 <img class="img-responsive" src="{{ image.link }}">
               </a>

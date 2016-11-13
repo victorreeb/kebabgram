@@ -14,34 +14,29 @@
       <ul class="nav navbar-nav">
         <li><a href=" {{ path_for('home') }} ">Home<span class="sr-only">(current)</span></a></li>
         <li><a href=" {{ path_for('images') }}">Wall of Kebab</a></li>
-        <li><a href=" {{ path_for('images') }}">Best of Kebab</a></li>
+        <li><a href=" {{ path_for('images.bestof') }}">Best of Kebab</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      {% if auth.check %}
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="{{ path_for('auth.profil')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">{{ auth.user.name }} <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="{{ path_for('auth.profil')}}">Profil</a></li>
-              <li><a href="{{ path_for('auth.password.change') }}">Changer Mot de Passe</a></li>
-              <li class="divider"></li>
-              <li><a href="{{ path_for('auth.signout' )}}">Déconnexion</a></li>
+        {% if auth.check %}
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href=" {{ path_for('search') }}">KebabSearch</a></li>
+              <li class="dropdown">
+                <a href="{{ path_for('auth.profil')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">{{ auth.user.name }} <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="{{ path_for('auth.profil')}}">Profil</a></li>
+                  <li><a href="{{ path_for('auth.password.change') }}">Changer Mot de Passe</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{{ path_for('auth.signout' )}}">Déconnexion</a></li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </div>
-      {% else %}
-        <li><a href=" {{ path_for('auth.signin') }} ">Connexion</a></li>
-        <li><a href=" {{ path_for('auth.signup') }} ">Inscription</a></li>
-      {% endif %}
-    </ul>
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Kebab express">
-        </div>
-        <button type="submit" class="btn btn-default">Rechercher</button>
-      </form>
+          </div>
+        {% else %}
+          <li><a href=" {{ path_for('auth.signin') }} ">Connexion</a></li>
+          <li><a href=" {{ path_for('auth.signup') }} ">Inscription</a></li>
+        {% endif %}
+      </ul>
     </div>
   </div>
 </nav>
